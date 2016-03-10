@@ -1,71 +1,66 @@
 package base;
-
 import java.util.Date;
 
 public class Account {
-	private int id;
-	private double balance;
-	private double annualInterestRate;
-	private Date dateCreated;
+	private int ID;
+	private double Balance;
+	private double AnnualInterestRate;
+	private Date DateCreated;
 	
-	//default account
+	//No arg constructor for the default account
 	public Account() {
-		id = 0;
-		balance = 0.0;
-		annualInterestRate = 0.0;
-	}
-	//create account with id and balance
-	public Account(int id, double balance) {
-		super();
-		this.id = id;
-		this.balance = balance;
-	}
-	// get id
-	public int getId() {
-		return id;
-	}
-	// set id
-	public void setId(int id) {
-		this.id = id;
-	}
-	// get balance
-	public double getBalance() {
-		return balance;
-	}
-	// set balance
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
-	// get Annual Interest Rate
-	public double getAnnualInterestRate() {
-		return annualInterestRate;
-	}
-	// set Annual Interest Rate
-	public void setAnnualInterestRate(double annualInterestRate) {
-		this.annualInterestRate = annualInterestRate;
-	}
-	// get date created
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-	// Calculate monthly interest rate
-	public double getMonthlyInterestRate(){
-		double MonthlyInterestRate =  annualInterestRate / 12;
-		return MonthlyInterestRate;
-	}
-	// Withdraw money from account
-	public void withdraw(double amount)throws InsufficientFundsException{
-		if (amount <= balance){
-			balance -= amount;
+		ID = 0;
+		Balance = 0.0;
+		AnnualInterestRate = 0.0;
 		}
-		else{
-			double needs = amount - balance;
-			throw new InsufficientFundsException(needs);
+	//Constructor with specific ID and Balance
+		public Account(int newID, double newBalance) {
+			ID = newID;
+			Balance = newBalance;
 		}
+	// Accessor and mutator methods for ID, Balance
+	// and AnnualInterestRate
+		public int getID() {
+			return ID;
 		}
-	// Deposit money into account
-	public void deposit(double amount){
-		balance+= amount;
-}
+		public void setID(int newID) {
+			ID = newID;
+		}
+		public double getBalance() {
+			return Balance;
+		}
+		public void setBalance(double newBalance) {
+			Balance = newBalance;
+		}
+		public double getAnnualInterestRate() {
+			return AnnualInterestRate;
+		}
+		public void setAnnualInterestRate(double newAnnualInterestRate) {
+			AnnualInterestRate = newAnnualInterestRate;
+		}
+		// 
+		public Date getDateCreated() {
+			return DateCreated;
+		}
+		// Method that calculates the monthly interest rate
+		public double getMonthlyInterestRate(){
+			double MonthlyInterestRate =  AnnualInterestRate / 12;
+			return MonthlyInterestRate;
+		}
+		// Withdraw Method 
+		public void Withdraw(double amount)throws InsufficientFundsException{
+			if (amount <= Balance){
+				Balance -= amount;
+			}
+			else{
+				double needs = amount - Balance;
+				throw new InsufficientFundsException(needs);
+			}
+			}
+		// Method that deposits money 
+		public void deposit(double amount){
+			Balance+= amount;
+	}
+
 
 }

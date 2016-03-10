@@ -1,5 +1,4 @@
 package base;
-
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -7,7 +6,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import java.util.Date;
 
 public class AccountTest {
 	@BeforeClass
@@ -26,51 +25,47 @@ public class AccountTest {
 	public void tearDown() throws Exception{
 	}
 	
-	protected int id;
-	protected double balance, annualInterestRate;
-	
+	int ID = 1122;
+	double Balance = 20000;
+	double AnnualInterestRate = 4.5;
+	Date DateCreated;
 
-	// assigning the values
-	protected void setUp1() {
-		id = 1122;
-		balance = 20000;
-		annualInterestRate = 4.5;
-
-	}
-
-	// test methods
+	// Test of all the methods created
 	@Test(expected=InsufficientFundsException.class)
-		public void testWithdraw(double amount)throws InsufficientFundsException{
-			amount = 2500;
-			if (amount <= balance){
-				balance -= amount;
-			}
-			else{
-				double needs = amount - balance;
+		public void testWithdraw()throws InsufficientFundsException{
+			double amount = 2500;
+			if (amount <= Balance){
+				Balance -= amount;
+			}else{
+				double needs = amount - Balance;
 				throw new InsufficientFundsException(needs);
 			}
-			assertTrue(balance == 17500);
+			assertTrue(Balance == 12000);
 			}
 	@Test(expected=InsufficientFundsException.class)
-	public void testWithdraw2(double amount)throws InsufficientFundsException{
-		amount = 30000;
-		if (amount <= balance){
-			balance -= amount;
-		}
-		else{
-			double needs = amount - balance;
+	public void testWithdraw2()throws InsufficientFundsException{
+		double amount = 30000;
+		if (amount <= Balance){
+			Balance -= amount;
+		}else{
+			double needs = amount - Balance;
 			throw new InsufficientFundsException(needs);
 		}
-		assertTrue(balance == 20000);
+		assertTrue(Balance == 9000);
 		}
 		
 	@Test
-	public void testDeposit(double amount){
-		amount = 3000;
-		balance+= amount;
-			
-		assertTrue(balance == 23000);		
+	public void testDeposit(){
+		double amount = 3000;
+		Balance += amount;
+		
+		assertTrue(Balance == 34000);		
 	}
-
-	System.out.println("The balance is:$ " + balance + "The monthly interest is: " + (balance * (annualInterestRate/12)) + "The date the account was created: " + dateCreated);
+	@Test
+	public void testAccount(){
+	System.out.println("The balance is:$ " + Balance);
+	System.out.println("The monthly interest is: " +(Balance * (AnnualInterestRate/12)));
+	System.out.println("The date that the account was created is: " + DateCreated);
 }
+}
+

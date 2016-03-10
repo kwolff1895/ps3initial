@@ -1,10 +1,9 @@
 package base;
-
-
 import java.io.*;
+
 /**
  * Custom class for throwing an insufficient funds exception
- * @author Dad
+ * @author lvpalaparthi
  *
  */
 public class InsufficientFundsException extends Exception
